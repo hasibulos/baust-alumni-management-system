@@ -1,0 +1,9 @@
+{
+  "name": "BAUST Alumni AMS - Generate Detailed Frames",
+  "id": "baust-alumni-generator",
+  "api": "1.0.0",
+  "main": "code.js",
+  "capabilities": [],
+  "enableProposedApi": false,
+  "editorType": ["figma"]
+}
