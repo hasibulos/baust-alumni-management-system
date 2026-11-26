@@ -35,7 +35,6 @@ lerna-debug.log*
 report_assets/
 *.py
 *.bat
-BAUST_AMS_Final_Project_Report_Group13.html
-BAUST_AMS_Feasibility_Study_Report_Group13.*
+*.html
 test_page_num.docx
 
