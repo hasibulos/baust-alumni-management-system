@@ -75,6 +75,31 @@ export default function App() {
   const [isNewThreadModalOpen, setIsNewThreadModalOpen] = useState(false);
   const [isCreateEventModalOpen, setIsCreateEventModalOpen] = useState(false);
   const [notification, setNotification] = useState('');
+  const [adminSubTab, setAdminSubTab] = useState('overview');
+
+  // Handle URL hash navigation (e.g. #directory?role=alumni, #dashboard?role=admin&subtab=pending)
+  useEffect(() => {
+    const handleHash = () => {
+      const hashStr = window.location.hash.replace('#', '');
+      if (!hashStr) return;
+      const parts = hashStr.split('?');
+      const tab = parts[0];
+      const params = new URLSearchParams(parts[1] || '');
+      const role = params.get('role');
+      const subtab = params.get('subtab');
+      const modal = params.get('modal');
+
+      if (role) setCurrentRole(role);
+      if (tab) setActiveTab(tab);
+      if (subtab) setAdminSubTab(subtab);
+      if (modal === 'profile' && alumniList.length > 0) setSelectedAlumnusForProfile(alumniList[0]);
+      if (modal === 'post_job') setIsPostJobModalOpen(true);
+      if (modal === 'create_event') setIsCreateEventModalOpen(true);
+    };
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, [alumniList]);
 
   // Auto dismiss toast
   useEffect(() => {
@@ -398,6 +423,7 @@ export default function App() {
                 onDeleteJob={handleDeleteJob}
                 onDeleteThread={handleDeleteThread}
                 onOpenCreateEvent={() => setIsCreateEventModalOpen(true)}
+                initialTab={adminSubTab}
               />
             ) : (
               <div className="max-w-md mx-auto my-20 p-8 bg-white border border-rose-200 rounded-2xl text-center space-y-3 shadow-lg">

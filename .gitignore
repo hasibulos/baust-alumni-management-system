@@ -30,3 +30,12 @@ lerna-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Report Builder Scripts & Internal Assets
+report_assets/
+*.py
+*.bat
+BAUST_AMS_Final_Project_Report_Group13.html
+BAUST_AMS_Feasibility_Study_Report_Group13.*
+test_page_num.docx
+

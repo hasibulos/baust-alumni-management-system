@@ -28,9 +28,16 @@ export default function AdminDashboardPage({
   onDeleteEvent,
   onDeleteJob,
   onDeleteThread,
-  onOpenCreateEvent
+  onOpenCreateEvent,
+  initialTab = 'overview'
 }) {
-  const [activeAdminTab, setActiveAdminTab] = useState('overview'); // 'overview', 'pending', 'members', 'events', 'moderation'
+  const [activeAdminTab, setActiveAdminTab] = useState(initialTab);
+
+  React.useEffect(() => {
+    if (initialTab) {
+      setActiveAdminTab(initialTab);
+    }
+  }, [initialTab]);
   const [selectedBatchForChart, setSelectedBatchForChart] = useState(null);
   const [memberSearch, setMemberSearch] = useState('');
 
